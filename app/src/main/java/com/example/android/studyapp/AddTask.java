@@ -44,6 +44,7 @@ public class AddTask extends AppCompatActivity {
         numberPicker.setMinValue(1);
         numberPicker.setMaxValue(5);
 
+
         spinner = findViewById(R.id.categorySpinner);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.categories, android.R.layout.simple_spinner_item);

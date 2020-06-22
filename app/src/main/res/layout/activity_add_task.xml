@@ -95,7 +95,8 @@
         android:layout_height="43dp"
         android:layout_marginStart="8dp"
         app:layout_constraintStart_toEndOf="@+id/priorityLabelTextView"
-        app:layout_constraintTop_toTopOf="@+id/priorityLabelTextView" />
+        app:layout_constraintTop_toTopOf="@+id/priorityLabelTextView"
+        />
 
     <Spinner
         android:id="@+id/categorySpinner"
