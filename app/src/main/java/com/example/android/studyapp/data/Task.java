@@ -22,15 +22,15 @@ public class Task {
     @ColumnInfo(name = "category")
     public String category;
 
-    //Constructor without id before that is auto generated
+    //Constructor without id before that is auto generated. Ignored as room uses the other constructor
+    @Ignore
     public Task(String title, String description, int priority, String category) {
         this.title = title;
         this.description = description;
         this.priority = priority;
         this.category = category;
     }
-    //Ignores this constructor
-    @Ignore
+
     public Task(int id, String title, String description, int priority, String category) {
         this.id = id;
         this.title = title;
