@@ -5,7 +5,7 @@ import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
-@Entity
+@Entity(tableName = "tasks")
 public class Task {
     @PrimaryKey(autoGenerate = true)
     public int id;
@@ -22,21 +22,31 @@ public class Task {
     @ColumnInfo(name = "category")
     public String category;
 
+    @ColumnInfo(name = "completed")
+    public boolean completed;
+
+    @ColumnInfo(name = "timeAdded")
+    public long timeAdded;
+
     //Constructor without id before that is auto generated. Ignored as room uses the other constructor
     @Ignore
-    public Task(String title, String description, int priority, String category) {
+    public Task(String title, String description, int priority, String category, boolean completed, long timeAdded) {
         this.title = title;
         this.description = description;
         this.priority = priority;
         this.category = category;
+        this.completed = completed;
+        this.timeAdded = timeAdded;
     }
 
-    public Task(int id, String title, String description, int priority, String category) {
+    public Task(int id, String title, String description, int priority, String category, boolean completed, long timeAdded) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.priority = priority;
         this.category = category;
+        this.completed = completed;
+        this.timeAdded = timeAdded;
     }
 
     public int getId() {
@@ -77,5 +87,21 @@ public class Task {
 
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    public boolean isCompleted() {
+        return completed;
+    }
+
+    public void setCompleted(boolean completed) {
+        this.completed = completed;
+    }
+
+    public long getTimeAdded() {
+        return timeAdded;
+    }
+
+    public void setTimeAdded(long timeAdded) {
+        this.timeAdded = timeAdded;
     }
 }
