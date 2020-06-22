@@ -9,10 +9,15 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.NumberPicker;
+import android.widget.Spinner;
 
 public class AddTask extends AppCompatActivity {
     Toolbar toolbar;
     Button addButton;
+    NumberPicker numberPicker;
+    Spinner spinner;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,6 +35,11 @@ public class AddTask extends AppCompatActivity {
                 finish();
             }
         });
+
+        numberPicker = findViewById(R.id.priorityNumberPicker);
+        spinner = findViewById(R.id.categorySpinner);
+        numberPicker.setMinValue(1);
+        numberPicker.setMaxValue(5);
 
     }
 
