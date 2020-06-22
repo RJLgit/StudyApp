@@ -13,6 +13,103 @@
         app:layout_constraintTop_toTopOf="parent"
         android:id="@+id/my_toolbar"/>
 
+    <TextView
+        android:id="@+id/titleLabelTextView"
+        android:layout_width="74dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="28dp"
+        android:text="Title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/my_toolbar" />
+
+    <TextView
+        android:id="@+id/descriptionLabelTextView"
+        android:layout_width="74dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="56dp"
+        android:text="Description"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titleLabelTextView" />
+
+    <TextView
+        android:id="@+id/priorityLabelTextView"
+        android:layout_width="74dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="88dp"
+        android:text="Priority"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/descriptionLabelTextView" />
+
+
+    <TextView
+        android:id="@+id/categoryLabelTextView"
+        android:layout_width="74dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="52dp"
+        android:text="Category"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/priorityLabelTextView" />
+
+    <Button
+        android:id="@+id/addTaskButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="16dp"
+        android:text="Add Task"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/categoryLabelTextView" />
+
+    <EditText
+        android:id="@+id/edit_text_title"
+        android:layout_width="0dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="16dp"
+        android:inputType="text"
+        android:maxLines="1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/titleLabelTextView"
+        app:layout_constraintTop_toTopOf="@+id/titleLabelTextView" />
+
+    <EditText
+        android:id="@+id/edit_text_description"
+        android:layout_width="0dp"
+        android:layout_height="83dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="16dp"
+        android:inputType="text"
+        android:maxLines="1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/descriptionLabelTextView"
+        app:layout_constraintTop_toTopOf="@+id/descriptionLabelTextView" />
+
+    <NumberPicker
+        android:id="@+id/priorityNumberPicker"
+        android:layout_width="0dp"
+        android:layout_height="43dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/priorityLabelTextView"
+        app:layout_constraintTop_toTopOf="@+id/priorityLabelTextView" />
+
+    <Spinner
+        android:id="@+id/categorySpinner"
+        android:layout_width="0dp"
+        android:layout_height="23dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/categoryLabelTextView"
+        app:layout_constraintTop_toTopOf="@+id/categoryLabelTextView" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
