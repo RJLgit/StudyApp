@@ -28,18 +28,22 @@ public class Task {
     @ColumnInfo(name = "timeAdded")
     public long timeAdded;
 
+    @ColumnInfo(name = "postponed")
+    public boolean postponed;
+
     //Constructor without id before that is auto generated. Ignored as room uses the other constructor
     @Ignore
-    public Task(String title, String description, int priority, String category, boolean completed, long timeAdded) {
+    public Task(String title, String description, int priority, String category, boolean completed, long timeAdded, boolean postponed) {
         this.title = title;
         this.description = description;
         this.priority = priority;
         this.category = category;
         this.completed = completed;
         this.timeAdded = timeAdded;
+        this.postponed = postponed;
     }
 
-    public Task(int id, String title, String description, int priority, String category, boolean completed, long timeAdded) {
+    public Task(int id, String title, String description, int priority, String category, boolean completed, long timeAdded, boolean postponed) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -47,6 +51,7 @@ public class Task {
         this.category = category;
         this.completed = completed;
         this.timeAdded = timeAdded;
+        this.postponed = postponed;
     }
 
     public int getId() {
@@ -103,5 +108,13 @@ public class Task {
 
     public void setTimeAdded(long timeAdded) {
         this.timeAdded = timeAdded;
+    }
+
+    public boolean isPostponed() {
+        return postponed;
+    }
+
+    public void setPostponed(boolean postponed) {
+        this.postponed = postponed;
     }
 }
