@@ -6,16 +6,20 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.FrameLayout;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
     Toolbar toolbar;
     BottomNavigationView bottomNavigationView;
+    FloatingActionButton floatingActionButton;
 
     private static final String TAG = "MainActivity";
 
@@ -33,6 +37,15 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
         bottomNavigationView = findViewById(R.id.bottom_navbar);
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
+
+        floatingActionButton = findViewById(R.id.add_task);
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, AddTask.class);
+                startActivity(intent);
+            }
+        });
 
         if (savedInstanceState == null) {
             FragmentManager fragmentManager = getSupportFragmentManager();
