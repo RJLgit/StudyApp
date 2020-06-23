@@ -71,7 +71,8 @@ public class AddTask extends AppCompatActivity {
                 long time = System.currentTimeMillis();
                 Task task = new Task(title, description, priority, category, completed, time, postponed);
                 viewModel.insertTask(task);
-                finish();
+                titleEditText.getText().clear();
+                descriptionEditText.getText().clear();
             }
         });
 
