@@ -58,8 +58,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
             transaction.replace(R.id.fragment_container, new TasksFragment()).commit();
         }
 
-        TaskViewModel viewModel;
-        viewModel = new ViewModelProvider(this).get(TaskViewModel.class);
+
     }
 
     @Override
