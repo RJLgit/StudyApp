@@ -4,6 +4,8 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.android.studyapp.data.Task;
@@ -51,12 +53,16 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
         TextView title;
         TextView category;
         TextView priority;
+        Spinner action;
+        Button actionButton;
 
         public TaskViewHolder(@NonNull View itemView) {
             super(itemView);
             title = itemView.findViewById(R.id.task_title_item_view);
             category = itemView.findViewById(R.id.task_category_item_view);
             priority = itemView.findViewById(R.id.task_priority_item_view);
+            action = itemView.findViewById(R.id.action_spinner);
+            actionButton = itemView.findViewById(R.id.action_button);
         }
     }
 }

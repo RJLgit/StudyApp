@@ -11,4 +11,24 @@
         <item>Hobby</item>
         <item>Other</item>
     </string-array>
+
+    <string-array name="task_actions">
+        <item>Select action</item>
+        <item>Set as completed</item>
+        <item>Set as postponed</item>
+        <item>Delete task</item>
+    </string-array>
+
+    <string-array name="completed_actions">
+        <item>Select action</item>
+        <item>Set as uncompleted</item>
+        <item>Set as postponed</item>
+        <item>Delete task</item>
+    </string-array>
+
+    <string-array name="postponed_actions">
+        <item>Select action</item>
+        <item>Set as active</item>
+        <item>Delete task</item>
+    </string-array>
 </resources>
