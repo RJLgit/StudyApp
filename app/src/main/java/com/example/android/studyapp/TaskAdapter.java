@@ -58,6 +58,10 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
         notifyDataSetChanged();
     }
 
+    public void sortData(String sort) {
+
+    }
+
     public void setSpinnerArray(int spinnerArray) {
         this.spinnerArray = spinnerArray;
     }

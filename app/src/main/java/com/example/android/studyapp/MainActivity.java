@@ -6,8 +6,10 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.preference.PreferenceManager;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -27,6 +29,9 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     Toolbar toolbar;
     BottomNavigationView bottomNavigationView;
     FloatingActionButton floatingActionButton;
+
+    String[] categoriesPreference;
+    String sortPreference;
 
     private static final String TAG = "MainActivity";
 
@@ -60,7 +65,6 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
             FragmentTransaction transaction = fragmentManager.beginTransaction();
             transaction.replace(R.id.fragment_container, new TasksFragment()).commit();
         }
-
 
     }
 
@@ -128,4 +132,5 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 return super.onOptionsItemSelected(item);
         }
     }
+
 }

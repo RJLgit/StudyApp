@@ -1,10 +1,14 @@
 package com.example.android.studyapp;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -17,8 +21,10 @@ import com.example.android.studyapp.data.TaskViewModel;
 
 import java.util.List;
 
-public class TasksFragment extends Fragment {
+public class TasksFragment extends Fragment implements SharedPreferences.OnSharedPreferenceChangeListener {
     RecyclerView recyclerView;
+    SharedPreferences sharedPreferences;
+    TaskAdapter taskAdapter;
 
     public TasksFragment() {
         // Required empty public constructor
@@ -33,7 +39,7 @@ public class TasksFragment extends Fragment {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
 
-        final TaskAdapter taskAdapter = new TaskAdapter(getActivity(), (TaskAdapter.OnActionButtonPressed) getActivity());
+        taskAdapter = new TaskAdapter(getActivity(), (TaskAdapter.OnActionButtonPressed) getActivity());
         taskAdapter.setSpinnerArray(R.array.task_actions);
         recyclerView.setAdapter(taskAdapter);
 
@@ -46,5 +52,23 @@ public class TasksFragment extends Fragment {
         });
 
         return v;
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        sharedPreferences.registerOnSharedPreferenceChangeListener(this);
+        super.onAttach(context);
+    }
+
+    @Override
+    public void onDetach() {
+        sharedPreferences.unregisterOnSharedPreferenceChangeListener(this);
+        super.onDetach();
+    }
+
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s) {
+        taskAdapter.sortData(sharedPreferences.getString("settings_key_sort", "Date added"));
     }
 }
