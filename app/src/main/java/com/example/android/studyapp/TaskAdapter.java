@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.example.android.studyapp.data.Task;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
@@ -64,10 +65,11 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
     public void sortData(String sort) {
         Log.d(TAG, "sortData: " + sort);
         if (sort.equals("Date added")) {
-
+            Collections.sort(myTasks, new Task.TimeComparator());
         } else if (sort.equals("Priority")) {
-
+            Collections.sort(myTasks, new Task.PriorityComparator());
         }
+        notifyDataSetChanged();
     }
 
     public void filterData(Set<String> settings_key_category) {
