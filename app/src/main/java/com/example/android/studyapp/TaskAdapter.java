@@ -1,6 +1,7 @@
 package com.example.android.studyapp;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,11 +14,13 @@ import com.example.android.studyapp.data.Task;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder> {
+    private static final String TAG = "TaskAdapter";
     private List<Task> myTasks = new ArrayList<>();
     Context mContext;
     int spinnerArray = R.array.task_actions;
@@ -59,12 +62,18 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
     }
 
     public void sortData(String sort) {
+        Log.d(TAG, "sortData: ");
+    }
 
+    public void filterData(Set<String> settings_key_category) {
+        Log.d(TAG, "filterData: ");
     }
 
     public void setSpinnerArray(int spinnerArray) {
         this.spinnerArray = spinnerArray;
     }
+
+    
 
     class TaskViewHolder extends RecyclerView.ViewHolder {
         TextView title;
