@@ -18,6 +18,8 @@ public class SettingsActivity extends AppCompatActivity {
         toolbar.setTitle("Settings");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.activity_settings_container, new SettingsFragment())
+                .commit();
     }
 }
