@@ -90,7 +90,9 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     public void actionButtonPressed(Task task, String s) {
         TaskViewModel viewModel = new ViewModelProvider(this).get(TaskViewModel.class);
         if (s.equals("Set as completed")) {
+            Log.d(TAG, "actionButtonPressed: completed");
             task.setCompleted(true);
+            Log.d(TAG, "actionButtonPressed: completed" + task.isCompleted());
             viewModel.updateTask(task);
         } else if (s.equals("Set as uncompleted")) {
             task.setCompleted(false);
@@ -102,10 +104,6 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
             viewModel.deleteTask(task);
         } else if (s.equals("Set as active")) {
             task.setPostponed(false);
-            viewModel.updateTask(task);
-        } else if (s.equals("Select action")) {
-            //To test
-            task.setTitle("whatever");
             viewModel.updateTask(task);
         }
     }
