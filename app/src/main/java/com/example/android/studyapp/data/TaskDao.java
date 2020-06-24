@@ -14,8 +14,8 @@ public interface TaskDao {
     @Query("SELECT * FROM tasks ORDER BY timeAdded")
     LiveData<List<Task>> getAllTasks();
 
-    @Query("SELECT * FROM tasks WHERE completed LIKE :b ORDER BY timeAdded")
-    LiveData<List<Task>> getByCompleted(boolean b);
+    @Query("SELECT * FROM tasks WHERE completed LIKE :b AND postponed LIKE :c ORDER BY timeAdded")
+    LiveData<List<Task>> getByCompleted(boolean b, boolean c);
 
     @Query("SELECT * FROM tasks WHERE postponed LIKE :p ORDER BY timeAdded")
     LiveData<List<Task>> getByPostponed(boolean p);

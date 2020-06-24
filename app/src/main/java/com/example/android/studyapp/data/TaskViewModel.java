@@ -19,8 +19,8 @@ public class TaskViewModel extends AndroidViewModel {
     public TaskViewModel(@NonNull Application application) {
         super(application);
         database = TaskDatabase.getInstance(getApplication());
-        completedTasks = database.taskDao().getByCompleted(true);
-        uncompletedTasks = database.taskDao().getByCompleted(false);
+        completedTasks = database.taskDao().getByCompleted(true, false);
+        uncompletedTasks = database.taskDao().getByCompleted(false, false);
         postponedTasks = database.taskDao().getByPostponed(true);
     }
 
