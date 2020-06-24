@@ -21,7 +21,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.sql.Timestamp;
 
-public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener, TaskAdapter.onActionButtonPressed {
+public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener, TaskAdapter.OnActionButtonPressed {
     Toolbar toolbar;
     BottomNavigationView bottomNavigationView;
     FloatingActionButton floatingActionButton;
@@ -102,6 +102,10 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
             viewModel.deleteTask(task);
         } else if (s.equals("Set as active")) {
             task.setPostponed(false);
+            viewModel.updateTask(task);
+        } else if (s.equals("Select action")) {
+            //To test
+            task.setTitle("whatever");
             viewModel.updateTask(task);
         }
     }

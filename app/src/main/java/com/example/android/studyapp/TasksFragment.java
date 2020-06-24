@@ -33,7 +33,7 @@ public class TasksFragment extends Fragment {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
 
-        final TaskAdapter taskAdapter = new TaskAdapter(getActivity());
+        final TaskAdapter taskAdapter = new TaskAdapter(getActivity(), (TaskAdapter.OnActionButtonPressed) getActivity());
         taskAdapter.setSpinnerArray(R.array.task_actions);
         recyclerView.setAdapter(taskAdapter);
 

@@ -21,9 +21,12 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
     private List<Task> myTasks = new ArrayList<>();
     Context mContext;
     int spinnerArray = R.array.task_actions;
+    OnActionButtonPressed mListener;
 
-    public TaskAdapter(Context mContext) {
+
+    public TaskAdapter(Context mContext, OnActionButtonPressed listener) {
         this.mContext = mContext;
+        this.mListener = listener;
     }
 
     @NonNull
@@ -31,7 +34,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
     public TaskViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(mContext);
         View view = inflater.inflate(R.layout.tasks_item_view, parent, false);
-        return new TaskViewHolder(view);
+        return new TaskViewHolder(view, mListener);
     }
 
     @Override
@@ -65,24 +68,26 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
         TextView priority;
         Spinner action;
         Button actionButton;
+        OnActionButtonPressed mViewHolderListener;
 
-        public TaskViewHolder(@NonNull View itemView) {
+        public TaskViewHolder(@NonNull View itemView, final OnActionButtonPressed viewHolderListener) {
             super(itemView);
             title = itemView.findViewById(R.id.task_title_item_view);
             category = itemView.findViewById(R.id.task_category_item_view);
             priority = itemView.findViewById(R.id.task_priority_item_view);
             action = itemView.findViewById(R.id.action_spinner);
             actionButton = itemView.findViewById(R.id.action_button);
+            mViewHolderListener = viewHolderListener;
             actionButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-
+                    viewHolderListener.actionButtonPressed(myTasks.get(getAdapterPosition()), action.getSelectedItem().toString());
                 }
             });
         }
     }
 
-    public interface onActionButtonPressed {
+    public interface OnActionButtonPressed {
         void actionButtonPressed(Task task, String s);
     }
 }
