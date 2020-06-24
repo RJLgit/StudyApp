@@ -22,7 +22,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder> {
     private static final String TAG = "TaskAdapter";
-    private List<Task> myTasks = new ArrayList<>();
+    private List<Task> allMyTasks;
+    private List<Task> myFilteredTasks;
     Context mContext;
     int spinnerArray = R.array.task_actions;
     OnActionButtonPressed mListener;
@@ -31,6 +32,8 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
     public TaskAdapter(Context mContext, OnActionButtonPressed listener) {
         this.mContext = mContext;
         this.mListener = listener;
+        allMyTasks = new ArrayList<>();
+        myFilteredTasks = new ArrayList<>();
     }
 
     @NonNull
@@ -43,9 +46,9 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull TaskViewHolder holder, int position) {
-        holder.title.setText(myTasks.get(position).getTitle());
-        holder.category.setText(myTasks.get(position).getCategory());
-        holder.priority.setText(myTasks.get(position).getPriority() + "");
+        holder.title.setText(myFilteredTasks.get(position).getTitle());
+        holder.category.setText(myFilteredTasks.get(position).getCategory());
+        holder.priority.setText(myFilteredTasks.get(position).getPriority() + "");
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(mContext,
                 spinnerArray, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -54,25 +57,40 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
 
     @Override
     public int getItemCount() {
-        return myTasks.size();
+        return myFilteredTasks.size();
     }
 
     public void setMyTasks(List<Task> myTasks) {
-        this.myTasks = myTasks;
+        this.allMyTasks = myTasks;
+        this.myFilteredTasks.addAll(allMyTasks);
         notifyDataSetChanged();
     }
 
     public void sortData(String sort) {
         Log.d(TAG, "sortData: " + sort);
         if (sort.equals("Date added")) {
-            Collections.sort(myTasks, new Task.TimeComparator());
+            Collections.sort(myFilteredTasks, new Task.TimeComparator());
         } else if (sort.equals("Priority")) {
-            Collections.sort(myTasks, new Task.PriorityComparator());
+            Collections.sort(myFilteredTasks, new Task.PriorityComparator());
         }
         notifyDataSetChanged();
     }
 
     public void filterData(Set<String> settings_key_category) {
+        Log.d(TAG, "filterData: " + settings_key_category);
+        Log.d(TAG, "filterData: " + myFilteredTasks);
+        Log.d(TAG, "filterData: " + allMyTasks);
+        myFilteredTasks.clear();
+        Log.d(TAG, "filterData: " + allMyTasks);
+
+        for (Task t : allMyTasks) {
+            Log.d(TAG, "filterData: " + t);
+            if (settings_key_category.contains(t.getCategory())) {
+                Log.d(TAG, "filterData: added");
+                myFilteredTasks.add(t);
+            }
+        }
+        notifyDataSetChanged();
         Log.d(TAG, "filterData: " + settings_key_category);
     }
 
@@ -101,7 +119,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
             actionButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    viewHolderListener.actionButtonPressed(myTasks.get(getAdapterPosition()), action.getSelectedItem().toString());
+                    viewHolderListener.actionButtonPressed(myFilteredTasks.get(getAdapterPosition()), action.getSelectedItem().toString());
                 }
             });
         }
