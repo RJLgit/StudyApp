@@ -14,13 +14,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
 
+import com.example.android.studyapp.data.Task;
 import com.example.android.studyapp.data.TaskViewModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.sql.Timestamp;
 
-public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener, TaskAdapter.onActionButtonPressed {
     Toolbar toolbar;
     BottomNavigationView bottomNavigationView;
     FloatingActionButton floatingActionButton;
@@ -83,5 +84,25 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         }
 
         return true;
+    }
+
+    @Override
+    public void actionButtonPressed(Task task, String s) {
+        TaskViewModel viewModel = new ViewModelProvider(this).get(TaskViewModel.class);
+        if (s.equals("Set as completed")) {
+            task.setCompleted(true);
+            viewModel.updateTask(task);
+        } else if (s.equals("Set as uncompleted")) {
+            task.setCompleted(false);
+            viewModel.updateTask(task);
+        } else if (s.equals("Set as postponed")) {
+            task.setPostponed(true);
+            viewModel.updateTask(task);
+        } else if (s.equals("Delete task")) {
+            viewModel.deleteTask(task);
+        } else if (s.equals("Set as active")) {
+            task.setPostponed(false);
+            viewModel.updateTask(task);
+        }
     }
 }

@@ -34,6 +34,7 @@ public class TasksFragment extends Fragment {
         recyclerView.setLayoutManager(layoutManager);
 
         final TaskAdapter taskAdapter = new TaskAdapter(getActivity());
+        taskAdapter.setSpinnerArray(R.array.task_actions);
         recyclerView.setAdapter(taskAdapter);
 
         TaskViewModel viewModel = new ViewModelProvider(requireActivity()).get(TaskViewModel.class);

@@ -35,6 +35,7 @@ public class PostponedFragment extends Fragment {
         recyclerView.setLayoutManager(layoutManager);
 
         final TaskAdapter adapter = new TaskAdapter(getActivity());
+        adapter.setSpinnerArray(R.array.postponed_actions);
 
         TaskViewModel viewModel = new ViewModelProvider(requireActivity()).get(TaskViewModel.class);
         viewModel.getPostponedTasks().observe(getViewLifecycleOwner(), new Observer<List<Task>>() {

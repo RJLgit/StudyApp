@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -19,6 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder> {
     private List<Task> myTasks = new ArrayList<>();
     Context mContext;
+    int spinnerArray = R.array.task_actions;
 
     public TaskAdapter(Context mContext) {
         this.mContext = mContext;
@@ -37,6 +39,10 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
         holder.title.setText(myTasks.get(position).getTitle());
         holder.category.setText(myTasks.get(position).getCategory());
         holder.priority.setText(myTasks.get(position).getPriority() + "");
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(mContext,
+                spinnerArray, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        holder.action.setAdapter(adapter);
     }
 
     @Override
@@ -47,6 +53,10 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
     public void setMyTasks(List<Task> myTasks) {
         this.myTasks = myTasks;
         notifyDataSetChanged();
+    }
+
+    public void setSpinnerArray(int spinnerArray) {
+        this.spinnerArray = spinnerArray;
     }
 
     class TaskViewHolder extends RecyclerView.ViewHolder {
@@ -63,6 +73,16 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
             priority = itemView.findViewById(R.id.task_priority_item_view);
             action = itemView.findViewById(R.id.action_spinner);
             actionButton = itemView.findViewById(R.id.action_button);
+            actionButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                }
+            });
         }
+    }
+
+    public interface onActionButtonPressed {
+        void actionButtonPressed(Task task, String s);
     }
 }

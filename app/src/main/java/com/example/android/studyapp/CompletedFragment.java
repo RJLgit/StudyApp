@@ -34,6 +34,7 @@ public class CompletedFragment extends Fragment {
         recyclerView.setLayoutManager(layoutManager);
 
         final TaskAdapter adapter = new TaskAdapter(getActivity());
+        adapter.setSpinnerArray(R.array.completed_actions);
 
         TaskViewModel viewModel = new ViewModelProvider(requireActivity()).get(TaskViewModel.class);
         viewModel.getCompletedTasks().observe(getViewLifecycleOwner(), new Observer<List<Task>>() {
