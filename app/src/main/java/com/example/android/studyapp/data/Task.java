@@ -1,5 +1,7 @@
 package com.example.android.studyapp.data;
 
+import java.util.Comparator;
+
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.Ignore;
@@ -117,4 +119,30 @@ public class Task {
     public void setPostponed(boolean postponed) {
         this.postponed = postponed;
     }
+
+    public static class PriorityComparator implements Comparator<Task> {
+        @Override
+        public int compare(Task task, Task t1) {
+            if (task.getPriority() > t1.getPriority()) {
+                return 1;
+            } else if (task.getPriority() < t1.getPriority()) {
+                return -1;
+            } else {
+                return 0;
+            }
+        }
+    }
+    public static class TimeComparator implements Comparator<Task> {
+        @Override
+        public int compare(Task task, Task t1) {
+            if (task.getTimeAdded() > t1.getTimeAdded()) {
+                return 1;
+            } else if (task.getTimeAdded() < t1.getTimeAdded()) {
+                return -1;
+            } else {
+                return 0;
+            }
+        }
+    }
+
 }

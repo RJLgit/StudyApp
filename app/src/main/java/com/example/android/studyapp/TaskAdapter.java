@@ -63,6 +63,11 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
 
     public void sortData(String sort) {
         Log.d(TAG, "sortData: " + sort);
+        if (sort.equals("Date added")) {
+
+        } else if (sort.equals("Priority")) {
+
+        }
     }
 
     public void filterData(Set<String> settings_key_category) {

@@ -48,6 +48,8 @@ public class TasksFragment extends Fragment implements SharedPreferences.OnShare
             @Override
             public void onChanged(List<Task> tasks) {
                 taskAdapter.setMyTasks(tasks);
+                taskAdapter.sortData(sharedPreferences.getString("settings_key_sort", "Date added"));
+                taskAdapter.filterData(sharedPreferences.getStringSet("settings_key_category", null));
             }
         });
 

@@ -3,6 +3,7 @@ package com.example.android.studyapp;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,6 +26,7 @@ public class PostponedFragment extends Fragment implements SharedPreferences.OnS
     RecyclerView recyclerView;
     SharedPreferences sharedPreferences;
     TaskAdapter adapter;
+    private static final String TAG = "PostponedFragment";
 
     public PostponedFragment() {
         // Required empty public constructor
@@ -49,6 +51,8 @@ public class PostponedFragment extends Fragment implements SharedPreferences.OnS
             @Override
             public void onChanged(List<Task> tasks) {
                 adapter.setMyTasks(tasks);
+                adapter.sortData(sharedPreferences.getString("settings_key_sort", "Date added"));
+                adapter.filterData(sharedPreferences.getStringSet("settings_key_category", null));
             }
         });
 
@@ -70,9 +74,12 @@ public class PostponedFragment extends Fragment implements SharedPreferences.OnS
 
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s) {
+        Log.d(TAG, "onSharedPreferenceChanged: ");
         if (s.equals("settings_key_sort")) {
+            Log.d(TAG, "onSharedPreferenceChanged: sort");
             adapter.sortData(sharedPreferences.getString("settings_key_sort", "Date added"));
         } else if (s.equals("settings_key_category")) {
+            Log.d(TAG, "onSharedPreferenceChanged: filter");
             adapter.filterData(sharedPreferences.getStringSet("settings_key_category", null));
         }
     }
