@@ -74,6 +74,5 @@ public class TasksFragment extends Fragment implements SharedPreferences.OnShare
         } else if (s.equals("settings_key_category")) {
             taskAdapter.filterData(sharedPreferences.getStringSet("settings_key_category", null));
         }
-
     }
 }

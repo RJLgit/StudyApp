@@ -62,11 +62,11 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
     }
 
     public void sortData(String sort) {
-        Log.d(TAG, "sortData: ");
+        Log.d(TAG, "sortData: " + sort);
     }
 
     public void filterData(Set<String> settings_key_category) {
-        Log.d(TAG, "filterData: ");
+        Log.d(TAG, "filterData: " + settings_key_category);
     }
 
     public void setSpinnerArray(int spinnerArray) {
