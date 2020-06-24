@@ -12,6 +12,11 @@
         <item>Other</item>
     </string-array>
 
+    <string-array name="sort_array">
+        <item>Date added</item>
+        <item>Priority</item>
+    </string-array>
+
     <string-array name="task_actions">
         <item>Select action</item>
         <item>Set as completed</item>
