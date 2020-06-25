@@ -3,7 +3,9 @@ package com.example.android.studyapp;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -33,7 +35,7 @@ public class TaskDetails extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        Task myTask = (Task) getIntent().getSerializableExtra("Task clicked");
+        final Task myTask = (Task) getIntent().getSerializableExtra("Task clicked");
 
         title.setText(myTask.getTitle());
         date.setText("Date Added: " + myTask.getTimeAdded());
@@ -51,7 +53,14 @@ public class TaskDetails extends AppCompatActivity {
         }
         toolbar.setSubtitle("Task: " + myTask.getTitle());
 
-
+        editButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(TaskDetails.this, EditTask.class);
+                intent.putExtra("Task clicked", myTask);
+                startActivity(intent);
+            }
+        });
 
 
 
