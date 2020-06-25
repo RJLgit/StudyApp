@@ -11,6 +11,9 @@ import android.widget.TextView;
 
 import com.example.android.studyapp.data.Task;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class TaskDetails extends AppCompatActivity {
     Toolbar toolbar;
     TextView title, date, priority, category, description, status;
@@ -38,7 +41,8 @@ public class TaskDetails extends AppCompatActivity {
         final Task myTask = (Task) getIntent().getSerializableExtra("Task clicked");
 
         title.setText(myTask.getTitle());
-        date.setText("Date Added: " + myTask.getTimeAdded());
+        String dateString = new SimpleDateFormat("MM/dd/yyyy").format(new Date(myTask.getTimeAdded()));
+        date.setText("Date Added: " + dateString);
         priority.setText("Priority: " + myTask.getPriority());
         category.setText("Category: " + myTask.getCategory());
         description.setText(myTask.getDescription());
