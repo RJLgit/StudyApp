@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.android.studyapp.data.Task;
+
 public class TaskDetails extends AppCompatActivity {
     Toolbar toolbar;
     TextView title, date, priority, category, description, status;
@@ -30,6 +32,26 @@ public class TaskDetails extends AppCompatActivity {
         toolbar.setTitle(getString(R.string.app_name));
         toolbar.setSubtitle("Set title of task here");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        Task myTask = (Task) getIntent().getSerializableExtra("Task clicked");
+
+        title.setText(myTask.getTitle());
+        date.setText("Date Added: " + myTask.getTimeAdded());
+        priority.setText("Priority: " + myTask.getPriority());
+        category.setText("Category: " + myTask.getCategory());
+        description.setText(myTask.getDescription());
+        if (myTask.isPostponed()) {
+            status.setText("Status: postponed");
+        } else {
+            if (myTask.isCompleted()) {
+                status.setText("Status: completed");
+            } else {
+                status.setText("Status: not completed");
+            }
+        }
+
+
+
 
 
     }
