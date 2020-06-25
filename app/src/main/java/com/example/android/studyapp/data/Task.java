@@ -1,5 +1,6 @@
 package com.example.android.studyapp.data;
 
+import java.io.Serializable;
 import java.util.Comparator;
 
 import androidx.room.ColumnInfo;
@@ -8,7 +9,7 @@ import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName = "tasks")
-public class Task {
+public class Task implements Serializable {
     @PrimaryKey(autoGenerate = true)
     public int id;
 

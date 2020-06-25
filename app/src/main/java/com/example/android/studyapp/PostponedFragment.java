@@ -42,7 +42,7 @@ public class PostponedFragment extends Fragment implements SharedPreferences.OnS
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
 
-        adapter = new TaskAdapter(getActivity(), (TaskAdapter.OnActionButtonPressed) getActivity());
+        adapter = new TaskAdapter(getActivity(), (TaskAdapter.OnActionButtonPressed) getActivity(), (TaskAdapter.OnTaskClicked) getActivity());
         recyclerView.setAdapter(adapter);
         adapter.setSpinnerArray(R.array.postponed_actions);
 

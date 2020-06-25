@@ -39,7 +39,7 @@ public class CompletedFragment extends Fragment implements SharedPreferences.OnS
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
 
-        adapter = new TaskAdapter(getActivity(), (TaskAdapter.OnActionButtonPressed) getActivity());
+        adapter = new TaskAdapter(getActivity(), (TaskAdapter.OnActionButtonPressed) getActivity(), (TaskAdapter.OnTaskClicked) getActivity());
         recyclerView.setAdapter(adapter);
         adapter.setSpinnerArray(R.array.completed_actions);
 

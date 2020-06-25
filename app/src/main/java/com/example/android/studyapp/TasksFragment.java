@@ -39,7 +39,7 @@ public class TasksFragment extends Fragment implements SharedPreferences.OnShare
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
 
-        taskAdapter = new TaskAdapter(getActivity(), (TaskAdapter.OnActionButtonPressed) getActivity());
+        taskAdapter = new TaskAdapter(getActivity(), (TaskAdapter.OnActionButtonPressed) getActivity(), (TaskAdapter.OnTaskClicked) getActivity());
         taskAdapter.setSpinnerArray(R.array.task_actions);
         recyclerView.setAdapter(taskAdapter);
 

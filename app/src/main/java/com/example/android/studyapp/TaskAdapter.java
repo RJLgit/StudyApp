@@ -27,13 +27,16 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
     Context mContext;
     int spinnerArray = R.array.task_actions;
     OnActionButtonPressed mListener;
+    OnTaskClicked mClickListener;
 
 
-    public TaskAdapter(Context mContext, OnActionButtonPressed listener) {
+    public TaskAdapter(Context mContext, OnActionButtonPressed listener, OnTaskClicked clickListener) {
         this.mContext = mContext;
         this.mListener = listener;
+        this.mClickListener = clickListener;
         allMyTasks = new ArrayList<>();
         myFilteredTasks = new ArrayList<>();
+
     }
 
     @NonNull
@@ -41,7 +44,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
     public TaskViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(mContext);
         View view = inflater.inflate(R.layout.tasks_item_view, parent, false);
-        return new TaskViewHolder(view, mListener);
+        return new TaskViewHolder(view, mListener, mClickListener);
     }
 
     @Override
@@ -85,7 +88,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
 
         for (Task t : allMyTasks) {
             Log.d(TAG, "filterData: " + t);
-            if (settings_key_category.contains(t.getCategory())) {
+            if (settings_key_category != null && settings_key_category.contains(t.getCategory())) {
                 Log.d(TAG, "filterData: added");
                 myFilteredTasks.add(t);
             }
@@ -100,15 +103,16 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
 
     
 
-    class TaskViewHolder extends RecyclerView.ViewHolder {
+    class TaskViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView title;
         TextView category;
         TextView priority;
         Spinner action;
         Button actionButton;
         OnActionButtonPressed mViewHolderListener;
+        OnTaskClicked mOnTaskClickedListener;
 
-        public TaskViewHolder(@NonNull View itemView, final OnActionButtonPressed viewHolderListener) {
+        public TaskViewHolder(@NonNull View itemView, final OnActionButtonPressed viewHolderListener, OnTaskClicked mClickListener) {
             super(itemView);
             title = itemView.findViewById(R.id.task_title_item_view);
             category = itemView.findViewById(R.id.task_category_item_view);
@@ -122,10 +126,21 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
                     viewHolderListener.actionButtonPressed(myFilteredTasks.get(getAdapterPosition()), action.getSelectedItem().toString());
                 }
             });
+            this.mOnTaskClickedListener = mClickListener;
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View view) {
+            mOnTaskClickedListener.taskClicked(myFilteredTasks.get(getAdapterPosition()));
         }
     }
 
     public interface OnActionButtonPressed {
         void actionButtonPressed(Task task, String s);
+    }
+
+    public interface OnTaskClicked {
+        void taskClicked(Task task);
     }
 }
