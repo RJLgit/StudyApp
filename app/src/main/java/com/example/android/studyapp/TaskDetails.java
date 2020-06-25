@@ -30,7 +30,7 @@ public class TaskDetails extends AppCompatActivity {
 
         setSupportActionBar(toolbar);
         toolbar.setTitle(getString(R.string.app_name));
-        toolbar.setSubtitle("Set title of task here");
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Task myTask = (Task) getIntent().getSerializableExtra("Task clicked");
@@ -49,6 +49,7 @@ public class TaskDetails extends AppCompatActivity {
                 status.setText("Status: not completed");
             }
         }
+        toolbar.setSubtitle("Task: " + myTask.getTitle());
 
 
 
