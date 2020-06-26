@@ -71,9 +71,9 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
 
     public void sortData(String sort) {
         Log.d(TAG, "sortData: " + sort);
-        if (sort.equals("Date added")) {
+        if (sort.equals("Date added - Most recent to least recent")) {
             Collections.sort(myFilteredTasks, new Task.TimeComparator());
-        } else if (sort.equals("Priority")) {
+        } else if (sort.equals("Priority - high to low")) {
             Collections.sort(myFilteredTasks, new Task.PriorityComparator());
         }
         notifyDataSetChanged();

@@ -13,8 +13,8 @@
     </string-array>
 
     <string-array name="sort_array">
-        <item>Date added</item>
-        <item>Priority</item>
+        <item>Date added - Most recent to least recent</item>
+        <item>Priority - high to low</item>
     </string-array>
 
     <string-array name="task_actions">

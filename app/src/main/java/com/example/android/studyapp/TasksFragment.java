@@ -49,7 +49,7 @@ public class TasksFragment extends Fragment implements SharedPreferences.OnShare
             public void onChanged(List<Task> tasks) {
                 taskAdapter.setMyTasks(tasks);
                 taskAdapter.filterData(sharedPreferences.getStringSet("settings_key_category", null));
-                taskAdapter.sortData(sharedPreferences.getString("settings_key_sort", "Date added"));
+                taskAdapter.sortData(sharedPreferences.getString("settings_key_sort", "Date added - Most recent to least recent"));
             }
         });
 
@@ -72,7 +72,7 @@ public class TasksFragment extends Fragment implements SharedPreferences.OnShare
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s) {
         if (s.equals("settings_key_sort")) {
-            taskAdapter.sortData(sharedPreferences.getString("settings_key_sort", "Date added"));
+            taskAdapter.sortData(sharedPreferences.getString("settings_key_sort", "Date added - Most recent to least recent"));
         } else if (s.equals("settings_key_category")) {
             taskAdapter.filterData(sharedPreferences.getStringSet("settings_key_category", null));
         }

@@ -52,7 +52,7 @@ public class PostponedFragment extends Fragment implements SharedPreferences.OnS
             public void onChanged(List<Task> tasks) {
                 adapter.setMyTasks(tasks);
                 adapter.filterData(sharedPreferences.getStringSet("settings_key_category", null));
-                adapter.sortData(sharedPreferences.getString("settings_key_sort", "Date added"));
+                adapter.sortData(sharedPreferences.getString("settings_key_sort", "Date added - Most recent to least recent"));
             }
         });
 
@@ -77,7 +77,7 @@ public class PostponedFragment extends Fragment implements SharedPreferences.OnS
         Log.d(TAG, "onSharedPreferenceChanged: ");
         if (s.equals("settings_key_sort")) {
             Log.d(TAG, "onSharedPreferenceChanged: sort");
-            adapter.sortData(sharedPreferences.getString("settings_key_sort", "Date added"));
+            adapter.sortData(sharedPreferences.getString("settings_key_sort", "Date added - Most recent to least recent"));
         } else if (s.equals("settings_key_category")) {
             Log.d(TAG, "onSharedPreferenceChanged: filter");
             adapter.filterData(sharedPreferences.getStringSet("settings_key_category", null));
