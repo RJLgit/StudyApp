@@ -51,8 +51,8 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
     @Override
     public void onBindViewHolder(@NonNull TaskViewHolder holder, int position) {
         holder.title.setText(myFilteredTasks.get(position).getTitle());
-        holder.category.setText(myFilteredTasks.get(position).getCategory());
-        holder.priority.setText(myFilteredTasks.get(position).getPriority() + "");
+        holder.category.setText("Category: " + myFilteredTasks.get(position).getCategory());
+        holder.priority.setText("Priority: " + myFilteredTasks.get(position).getPriority());
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(mContext,
                 spinnerArray, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
