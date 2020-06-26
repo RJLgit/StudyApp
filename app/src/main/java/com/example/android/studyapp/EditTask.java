@@ -56,13 +56,15 @@ public class EditTask extends AppCompatActivity {
                 R.array.categories, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
-
+        int spinnerPosition = adapter.getPosition(myTask.getCategory());
+        spinner.setSelection(spinnerPosition);
 
 
         titleEditText = findViewById(R.id.edit_text_title);
         titleEditText.setText(myTask.getTitle());
         descriptionEditText = findViewById(R.id.edit_text_description);
         descriptionEditText.setText(myTask.getDescription());
+
 
         editButton = findViewById(R.id.editButton);
         editButton.setOnClickListener(new View.OnClickListener() {
