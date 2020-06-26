@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.NumberPicker;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.example.android.studyapp.data.Task;
 import com.example.android.studyapp.data.TaskViewModel;
@@ -70,21 +71,35 @@ public class EditTask extends AppCompatActivity {
         editButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d(TAG, "onClick: " + spinner.getSelectedItem().toString());
-                String title = titleEditText.getText().toString();
-                String description = descriptionEditText.getText().toString();
-                int priority = numberPicker.getValue();
-                String category = spinner.getSelectedItem().toString();
-                myTask.setTitle(title);
-                myTask.setDescription(description);
-                myTask.setPriority(priority);
-                myTask.setCategory(category);
+                if (checkValidEntry()) {
+                    Log.d(TAG, "onClick: " + spinner.getSelectedItem().toString());
+                    String title = titleEditText.getText().toString();
+                    String description = descriptionEditText.getText().toString();
+                    int priority = numberPicker.getValue();
+                    String category = spinner.getSelectedItem().toString();
+                    myTask.setTitle(title);
+                    myTask.setDescription(description);
+                    myTask.setPriority(priority);
+                    myTask.setCategory(category);
 
-                viewModel.updateTask(myTask);
+                    viewModel.updateTask(myTask);
+                } else {
+                    Toast.makeText(EditTask.this, "Please enter text for both the title and description", Toast.LENGTH_LONG).show();
+                }
+
 
             }
         });
 
+    }
+
+    private boolean checkValidEntry() {
+        if (titleEditText.getText().toString().trim().equals("") ||
+                descriptionEditText.getText().toString().trim().equals("")) {
+            return false;
+        } else {
+            return true;
+        }
     }
 
     @Override

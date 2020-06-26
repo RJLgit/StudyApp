@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.NumberPicker;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.example.android.studyapp.data.Task;
 import com.example.android.studyapp.data.TaskViewModel;
@@ -62,20 +63,34 @@ public class AddTask extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Log.d(TAG, "onClick: " + spinner.getSelectedItem().toString());
-                String title = titleEditText.getText().toString();
-                String description = descriptionEditText.getText().toString();
-                int priority = numberPicker.getValue();
-                String category = spinner.getSelectedItem().toString();
-                boolean completed = false;
-                boolean postponed = false;
-                long time = System.currentTimeMillis();
-                Task task = new Task(title, description, priority, category, completed, time, postponed);
-                viewModel.insertTask(task);
-                titleEditText.getText().clear();
-                descriptionEditText.getText().clear();
+                if (checkValidEntry()) {
+                    String title = titleEditText.getText().toString();
+                    String description = descriptionEditText.getText().toString();
+                    int priority = numberPicker.getValue();
+                    String category = spinner.getSelectedItem().toString();
+                    boolean completed = false;
+                    boolean postponed = false;
+                    long time = System.currentTimeMillis();
+                    Task task = new Task(title, description, priority, category, completed, time, postponed);
+                    viewModel.insertTask(task);
+                    titleEditText.getText().clear();
+                    descriptionEditText.getText().clear();
+                } else {
+                    Toast.makeText(AddTask.this, "Please enter text for both the title and description", Toast.LENGTH_LONG).show();
+                }
+
             }
         });
 
+    }
+
+    private boolean checkValidEntry() {
+        if (titleEditText.getText().toString().trim().equals("") ||
+                descriptionEditText.getText().toString().trim().equals("")) {
+            return false;
+        } else {
+            return true;
+        }
     }
 
     @Override
