@@ -5,6 +5,7 @@
         android:title="Select categories to show"
         android:entries="@array/categories"
         android:entryValues="@array/categories"
+        android:defaultValue="@array/categories"
         />
 
     <ListPreference
