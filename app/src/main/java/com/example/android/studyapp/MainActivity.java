@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         toolbar = findViewById(R.id.my_toolbar);
         setSupportActionBar(toolbar);
         toolbar.setTitle(getString(R.string.app_name));
-        toolbar.setSubtitle("Manage your study tasks");
+        toolbar.setSubtitle("Click task to see more details");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 

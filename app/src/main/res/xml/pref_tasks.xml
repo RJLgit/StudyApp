@@ -14,7 +14,7 @@
         android:entries="@array/sort_array"
         android:entryValues="@array/sort_array"
         android:summary="%s"
-        android:defaultValue="Date"
+        android:defaultValue="Date added - Most recent to least recent"
         />
 
 </PreferenceScreen>
