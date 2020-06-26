@@ -3,6 +3,13 @@
     <color name="colorPrimary">#33B5E5</color>
     <color name="colorPrimaryDark">#6200EE</color>
     <color name="colorAccent">#CC0000</color>
+    <!--Colors for backgrounds-->
+    <color name="colorWork">#34cceb</color>
+    <color name="colorSocial">#a2eb34</color>
+    <color name="colorHousework">#ebe534</color>
+    <color name="colorStudy">#eb34c3</color>
+    <color name="colorHobby">#eb5634</color>
+    <color name="colorOther">#a534eb</color>
 
 
 </resources>

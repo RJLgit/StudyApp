@@ -18,6 +18,7 @@ import java.util.List;
 import java.util.Set;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder> {
@@ -56,6 +57,29 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
                 spinnerArray, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         holder.action.setAdapter(adapter);
+        switch(myFilteredTasks.get(position).getCategory()) {
+            case "Work":
+                holder.setBackgroundColor(mContext.getColor(R.color.colorWork));
+                break;
+            case "Social":
+                holder.setBackgroundColor(mContext.getColor(R.color.colorSocial));
+                break;
+            case "Housework":
+                holder.setBackgroundColor(mContext.getColor(R.color.colorHousework));
+                break;
+            case "Study":
+                holder.setBackgroundColor(mContext.getColor(R.color.colorStudy));
+                break;
+            case "Hobby":
+                holder.setBackgroundColor(mContext.getColor(R.color.colorHobby));
+                break;
+            case "Other":
+                holder.setBackgroundColor(mContext.getColor(R.color.colorOther));
+                break;
+            default:
+                holder.setBackgroundColor(mContext.getColor(R.color.colorOther));
+                break;
+        }
     }
 
     @Override
@@ -111,9 +135,11 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
         Button actionButton;
         OnActionButtonPressed mViewHolderListener;
         OnTaskClicked mOnTaskClickedListener;
+        ConstraintLayout constraintLayout;
 
         public TaskViewHolder(@NonNull View itemView, final OnActionButtonPressed viewHolderListener, OnTaskClicked mClickListener) {
             super(itemView);
+            constraintLayout = itemView.findViewById(R.id.container_item_view);
             title = itemView.findViewById(R.id.task_title_item_view);
             category = itemView.findViewById(R.id.task_category_item_view);
             priority = itemView.findViewById(R.id.task_priority_item_view);
@@ -128,6 +154,10 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
             });
             this.mOnTaskClickedListener = mClickListener;
             itemView.setOnClickListener(this);
+        }
+
+        public void setBackgroundColor(int color) {
+            constraintLayout.setBackgroundColor(color);
         }
 
         @Override
