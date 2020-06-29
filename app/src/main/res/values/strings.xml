@@ -1,7 +1,8 @@
 <resources>
     <string name="app_name">Study Helper</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!-- Add Task Strings -->
+    <string name="add_task_toolbar_subtitle">Add a task</string>
+    <string name="add_task_toast_not_valid">Please enter text for both the title and description</string>
 
     <string-array name="categories">
         <item>Work</item>
