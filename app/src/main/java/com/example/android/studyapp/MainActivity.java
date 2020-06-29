@@ -64,6 +64,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         if (savedInstanceState == null) {
             FragmentManager fragmentManager = getSupportFragmentManager();
             FragmentTransaction transaction = fragmentManager.beginTransaction();
+            transaction.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left, R.anim.slide_in_right, R.anim.slide_out_left);
             transaction.replace(R.id.fragment_container, new TasksFragment()).commit();
         }
 
@@ -77,15 +78,24 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         switch (id) {
             case R.id.menu_todo:
+                transaction.setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right, R.anim.slide_in_left, R.anim.slide_out_right);
                 transaction.replace(R.id.fragment_container, new TasksFragment()).commit();
                 break;
             case R.id.menu_done:
+                if (findViewById(R.id.tasks_rv) == null) {
+                    transaction.setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right, R.anim.slide_in_left, R.anim.slide_out_right);
+
+                } else {
+                    transaction.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left, R.anim.slide_in_right, R.anim.slide_out_left);
+                }
                 transaction.replace(R.id.fragment_container, new CompletedFragment()).commit();
                 break;
             case R.id.menu_postponed:
+                transaction.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left, R.anim.slide_in_right, R.anim.slide_out_left);
                 transaction.replace(R.id.fragment_container, new PostponedFragment()).commit();
                 break;
             default:
+                transaction.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left, R.anim.slide_in_right, R.anim.slide_out_left);
                 transaction.replace(R.id.fragment_container, new TasksFragment()).commit();
                 break;
         }
