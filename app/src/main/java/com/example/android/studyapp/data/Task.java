@@ -7,7 +7,7 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
-
+//Entity class that implements serializable so it can be passed as intent extra
 @Entity(tableName = "tasks")
 public class Task implements Serializable {
     @PrimaryKey(autoGenerate = true)
@@ -120,7 +120,7 @@ public class Task implements Serializable {
     public void setPostponed(boolean postponed) {
         this.postponed = postponed;
     }
-
+    //Comparator to sort a collection of task objects by priority.
     public static class PriorityComparator implements Comparator<Task> {
         @Override
         public int compare(Task task, Task t1) {
@@ -133,6 +133,7 @@ public class Task implements Serializable {
             }
         }
     }
+    //Comparator to sort a collection of task objects by time added.
     public static class TimeComparator implements Comparator<Task> {
         @Override
         public int compare(Task task, Task t1) {
