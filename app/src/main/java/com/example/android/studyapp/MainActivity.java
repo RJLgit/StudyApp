@@ -139,4 +139,13 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         intent.putExtra("Task clicked", task);
         startActivity(intent);
     }
+
+    @Override
+    public void onBackPressed() {
+        if (findViewById(R.id.tasks_rv) == null) {
+            bottomNavigationView.setSelectedItemId(bottomNavigationView.getMenu().getItem(0).getItemId());
+        } else {
+            super.onBackPressed();
+        }
+    }
 }
