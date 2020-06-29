@@ -109,7 +109,7 @@ public class EditTask extends AppCompatActivity {
         switch(itemId) {
             case android.R.id.home:
                 onBackPressed();
-                break;
+                return true;
             default:
                 break;
         }
@@ -123,5 +123,6 @@ public class EditTask extends AppCompatActivity {
         intent.putExtra("Task clicked", myTask);
         startActivity(intent);
         super.onBackPressed();
+        overridePendingTransition(R.anim.slide_in_bottom, R.anim.slide_out_top);
     }
 }

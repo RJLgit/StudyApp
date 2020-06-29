@@ -193,6 +193,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         Intent intent = new Intent(this, TaskDetails.class);
         intent.putExtra("Task clicked", task);
         startActivity(intent);
+        overridePendingTransition(R.anim.slide_in_top, R.anim.slide_out_bottom);
     }
 
     @Override
