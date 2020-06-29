@@ -149,7 +149,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
             actionButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    viewHolderListener.actionButtonPressed(myFilteredTasks.get(getAdapterPosition()), action.getSelectedItem().toString());
+                    viewHolderListener.actionButtonPressed(myFilteredTasks.get(getAdapterPosition()), action.getSelectedItem().toString(), TaskViewHolder.this);
                 }
             });
             this.mOnTaskClickedListener = mClickListener;
@@ -167,7 +167,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
     }
 
     public interface OnActionButtonPressed {
-        void actionButtonPressed(Task task, String s);
+        void actionButtonPressed(Task task, String s, TaskViewHolder taskViewHolder);
     }
 
     public interface OnTaskClicked {

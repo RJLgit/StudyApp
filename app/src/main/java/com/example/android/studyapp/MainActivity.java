@@ -22,6 +22,7 @@ import com.example.android.studyapp.data.Task;
 import com.example.android.studyapp.data.TaskViewModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.sql.Timestamp;
 
@@ -93,24 +94,63 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     }
 
     @Override
-    public void actionButtonPressed(Task task, String s) {
-        TaskViewModel viewModel = new ViewModelProvider(this).get(TaskViewModel.class);
+    public void actionButtonPressed(final Task task, String s, TaskAdapter.TaskViewHolder taskViewHolder) {
+        final TaskViewModel viewModel = new ViewModelProvider(this).get(TaskViewModel.class);
         if (s.equals("Set as completed")) {
             Log.d(TAG, "actionButtonPressed: completed");
             task.setCompleted(true);
             Log.d(TAG, "actionButtonPressed: completed" + task.isCompleted());
             viewModel.updateTask(task);
+            Snackbar.make(taskViewHolder.itemView, "Task updated", Snackbar.LENGTH_LONG)
+                    .setAction("Undo", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            task.setCompleted(false);
+                            viewModel.updateTask(task);
+                        }
+                    }).show();
         } else if (s.equals("Set as uncompleted")) {
             task.setCompleted(false);
             viewModel.updateTask(task);
+            Snackbar.make(taskViewHolder.itemView, "Task updated", Snackbar.LENGTH_LONG)
+                    .setAction("Undo", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            task.setCompleted(true);
+                            viewModel.updateTask(task);
+                        }
+                    }).show();
         } else if (s.equals("Set as postponed")) {
             task.setPostponed(true);
             viewModel.updateTask(task);
+            Snackbar.make(taskViewHolder.itemView, "Task updated", Snackbar.LENGTH_LONG)
+                    .setAction("Undo", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            task.setPostponed(false);
+                            viewModel.updateTask(task);
+                        }
+                    }).show();
         } else if (s.equals("Delete task")) {
             viewModel.deleteTask(task);
+            Snackbar.make(taskViewHolder.itemView, "Task deleted", Snackbar.LENGTH_LONG)
+                    .setAction("Undo", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            viewModel.insertTask(task);
+                        }
+                    }).show();
         } else if (s.equals("Set as active")) {
             task.setPostponed(false);
             viewModel.updateTask(task);
+            Snackbar.make(taskViewHolder.itemView, "Task updated", Snackbar.LENGTH_LONG)
+                    .setAction("Undo", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            task.setPostponed(true);
+                            viewModel.updateTask(task);
+                        }
+                    }).show();
         }
     }
 
