@@ -177,6 +177,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
             case R.id.settings:
                 Intent intent = new Intent(this, SettingsActivity.class);
                 startActivity(intent);
+                overridePendingTransition(R.anim.slide_in_top, R.anim.slide_out_bottom);
                 return true;
             case android.R.id.home:
                 onBackPressed();
