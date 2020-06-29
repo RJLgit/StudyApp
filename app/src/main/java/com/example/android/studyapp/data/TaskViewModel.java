@@ -8,8 +8,8 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.ViewModel;
 
+//View Model class which handles the database queries and changes. These methods are called from the activities and fragments to interact with the db
 public class TaskViewModel extends AndroidViewModel {
     private LiveData<List<Task>> completedTasks;
     private LiveData<List<Task>> uncompletedTasks;

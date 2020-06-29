@@ -8,7 +8,7 @@ import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
-
+//Task Dao interface for Room
 @Dao
 public interface TaskDao {
     @Query("SELECT * FROM tasks ORDER BY timeAdded")
