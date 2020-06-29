@@ -100,11 +100,17 @@ public class AddTask extends AppCompatActivity {
         switch(itemId) {
             case android.R.id.home:
                 onBackPressed();
-                break;
+                return true;
             default:
                 break;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(R.anim.slide_in_top, R.anim.slide_out_bottom);
     }
 }
