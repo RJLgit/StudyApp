@@ -7,6 +7,10 @@
     <string name="settings_key_categories">settings_key_category</string>
     <string name="settings_key_sort">settings_key_sort</string>
     <string name="default_setting_sort">Date added - Most recent to least recent</string>
+    <!-- Edit Task Strings -->
+    <string name="edit_task_toolbar_subtitle">Edit task</string>
+    <string name="edit_task_intent_extra">Task clicked</string>
+
 
     <string-array name="categories">
         <item>Work</item>

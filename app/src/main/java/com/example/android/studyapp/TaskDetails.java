@@ -40,7 +40,7 @@ public class TaskDetails extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        final Task myTask = (Task) getIntent().getSerializableExtra("Task clicked");
+        final Task myTask = (Task) getIntent().getSerializableExtra(getString(R.string.edit_task_intent_extra));
 
         title.setText(myTask.getTitle());
         String dateString = new SimpleDateFormat("MM/dd/yyyy").format(new Date(myTask.getTimeAdded()));
@@ -63,7 +63,7 @@ public class TaskDetails extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(TaskDetails.this, EditTask.class);
-                intent.putExtra("Task clicked", myTask);
+                intent.putExtra(getString(R.string.edit_task_intent_extra), myTask);
                 startActivity(intent);
                 overridePendingTransition(R.anim.slide_in_top, R.anim.slide_out_bottom);
             }
