@@ -26,6 +26,16 @@
     <!-- Settings Activity Strings -->
     <string name="settings_toolbar_title">Settings</string>
     <string name="settings_toolbar_subtitle">Sort and filter the tasks</string>
+    <!-- Main Activity Strings -->
+    <string name="main_activity_toolbar_subtitle">Click task to see more details</string>
+    <string name="action_set_completed">Set as completed</string>
+    <string name="action_set_uncompleted">Set as uncompleted</string>
+    <string name="action_set_postponed">Set as postponed</string>
+    <string name="action_delete_task">Delete task</string>
+    <string name="action_set_active">Set as active</string>
+    <string name="snackbar_task_updated">Task updated</string>
+    <string name="snackbar_task_deleted">Task deleted</string>
+    <string name="snackbar_undo">Undo</string>
 
 
     <string-array name="categories">
