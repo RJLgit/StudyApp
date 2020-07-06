@@ -19,7 +19,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="28dp"
-        android:text="Title"
+        android:text="@string/add_task_title_label"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/my_toolbar" />
 
@@ -29,7 +29,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="56dp"
-        android:text="Description"
+        android:text="@string/add_task_description_label"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/titleLabelTextView" />
 
@@ -39,7 +39,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="24dp"
-        android:text="Priority"
+        android:text="@string/add_task_priority_label"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edit_text_description" />
 
@@ -49,7 +49,7 @@
         android:layout_width="74dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:text="Category"
+        android:text="@string/add_task_category_label"
         app:layout_constraintStart_toEndOf="@+id/priorityNumberPicker"
         app:layout_constraintTop_toTopOf="@+id/priorityLabelTextView" />
 
@@ -60,7 +60,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="28dp"
         android:layout_marginEnd="16dp"
-        android:text="Add Task"
+        android:text="@string/add_task_button_label"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"

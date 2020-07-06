@@ -36,6 +36,17 @@
     <string name="snackbar_task_updated">Task updated</string>
     <string name="snackbar_task_deleted">Task deleted</string>
     <string name="snackbar_undo">Undo</string>
+    <!-- Menu Strings -->
+    <string name="settings_title">Settings</string>
+    <string name="tasks_to_do_menu">Tasks to do</string>
+    <string name="completed_tasks_menu">Completed tasks</string>
+    <string name="postponed_tasks_menu">Postponed tasks</string>
+    <string name="add_task_title_label">Title</string>
+    <string name="add_task_description_label">Description</string>
+    <string name="add_task_priority_label">Priority</string>
+    <string name="add_task_category_label">Category</string>
+    <string name="add_task_button_label">Add Task</string>
+    <!-- Layout Strings -->
 
 
     <string-array name="categories">

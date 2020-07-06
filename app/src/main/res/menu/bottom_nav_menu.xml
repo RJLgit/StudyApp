@@ -2,17 +2,17 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item android:id="@+id/menu_todo"
-        android:title="Tasks to do"
+        android:title="@string/tasks_to_do_menu"
         android:enabled="true"
         android:icon="@drawable/ic_todo"
         />
     <item android:id="@+id/menu_done"
-        android:title="Completed tasks"
+        android:title="@string/completed_tasks_menu"
         android:enabled="true"
         android:icon="@drawable/ic_completed"
         />
     <item android:id="@+id/menu_postponed"
-        android:title="Postponed tasks"
+        android:title="@string/postponed_tasks_menu"
         android:enabled="true"
         android:icon="@drawable/ic_postponed"
         />
