@@ -14,13 +14,13 @@ public class SettingsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
-
+        //Sets up the toolbar
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        toolbar.setTitle("Settings");
-        toolbar.setSubtitle("Sort and filter the tasks");
+        toolbar.setTitle(R.string.settings_toolbar_title);
+        toolbar.setSubtitle(R.string.settings_toolbar_subtitle);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
+        //Loads the settings fragment into the container
         getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.slide_in_top, R.anim.slide_out_bottom, R.anim.slide_in_top, R.anim.slide_out_bottom)
                 .replace(R.id.activity_settings_container, new SettingsFragment())
                 .commit();

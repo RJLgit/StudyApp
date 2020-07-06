@@ -23,7 +23,9 @@
     <!-- Task Adapter Strings -->
     <string name="task_adapter_category_string">Category: %1$s</string>
     <string name="task_adapter_priority">Priority: %1$d</string>
-
+    <!-- Settings Activity Strings -->
+    <string name="settings_toolbar_title">Settings</string>
+    <string name="settings_toolbar_subtitle">Sort and filter the tasks</string>
 
 
     <string-array name="categories">
