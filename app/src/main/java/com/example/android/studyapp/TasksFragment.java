@@ -24,7 +24,7 @@ import java.util.List;
 public class TasksFragment extends Fragment implements SharedPreferences.OnSharedPreferenceChangeListener {
     RecyclerView recyclerView;
     SharedPreferences sharedPreferences;
-    TaskAdapter taskAdapter;
+    TaskAdapter adapter;
 
     public TasksFragment() {
         // Required empty public constructor
@@ -34,47 +34,48 @@ public class TasksFragment extends Fragment implements SharedPreferences.OnShare
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v = inflater.inflate(R.layout.fragment_tasks, container, false);
-        recyclerView = v.findViewById(R.id.tasks_rv);
+        View v = inflater.inflate(R.layout.fragment_postponed, container, false);
+        //Sets up the RV
+        recyclerView = v.findViewById(R.id.postponed_rv);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
-
-        taskAdapter = new TaskAdapter(getActivity(), (TaskAdapter.OnActionButtonPressed) getActivity(), (TaskAdapter.OnTaskClicked) getActivity());
-        taskAdapter.setSpinnerArray(R.array.task_actions);
-        recyclerView.setAdapter(taskAdapter);
-
+        //Sets up the adapter, sending the activity as the context and on click listeners
+        adapter = new TaskAdapter(getActivity(), (TaskAdapter.OnActionButtonPressed) getActivity(), (TaskAdapter.OnTaskClicked) getActivity());
+        recyclerView.setAdapter(adapter);
+        //Sends array of options to populate the drop down menu in each item
+        adapter.setSpinnerArray(R.array.postponed_actions);
+        //Gets the postponed tasks and populates the adapter with these tasks, sends the sort and filter settings obtained from the shared preferences instance
         TaskViewModel viewModel = new ViewModelProvider(requireActivity()).get(TaskViewModel.class);
         viewModel.getUncompletedTasks().observe(getViewLifecycleOwner(), new Observer<List<Task>>() {
             @Override
             public void onChanged(List<Task> tasks) {
-                taskAdapter.setMyTasks(tasks);
-                taskAdapter.filterData(sharedPreferences.getStringSet("settings_key_category", null));
-                taskAdapter.sortData(sharedPreferences.getString("settings_key_sort", "Date added - Most recent to least recent"));
+                adapter.setMyTasks(tasks);
+                adapter.filterData(sharedPreferences.getStringSet(getString(R.string.settings_key_categories), null));
+                adapter.sortData(sharedPreferences.getString(getString(R.string.settings_key_sort), getString(R.string.default_setting_sort)));
             }
         });
-
         return v;
     }
-
+    //When the fragment is attached the shared preference instance is created and the listener is registered
     @Override
     public void onAttach(@NonNull Context context) {
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         sharedPreferences.registerOnSharedPreferenceChangeListener(this);
         super.onAttach(context);
     }
-
+    //Need to ungregister the sharedpreference change listener when detached
     @Override
     public void onDetach() {
         sharedPreferences.unregisterOnSharedPreferenceChangeListener(this);
         super.onDetach();
     }
-
+    //Method triggered when shared preference changed, sends the new setting to the adapter when that happens to update the RV
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s) {
         if (s.equals("settings_key_sort")) {
-            taskAdapter.sortData(sharedPreferences.getString("settings_key_sort", "Date added - Most recent to least recent"));
+            adapter.sortData(sharedPreferences.getString(getString(R.string.settings_key_sort), getString(R.string.default_setting_sort)));
         } else if (s.equals("settings_key_category")) {
-            taskAdapter.filterData(sharedPreferences.getStringSet("settings_key_category", null));
+            adapter.filterData(sharedPreferences.getStringSet(getString(R.string.settings_key_categories), null));
         }
     }
 }
