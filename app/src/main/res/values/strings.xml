@@ -16,9 +16,9 @@
     <string name="task_details_date_added">Date Added: %1$s</string>
     <string name="task_details_priority">Priority: %1$d</string>
     <string name="task_details_category">Category: %1$s</string>
-    <string name="task_details_postponed_status">Status: postponed</string>
-    <string name="task_details_completed_status">Status: completed</string>
-    <string name="task_details_not_completed_status">Status: not completed</string>
+    <string name="task_details_postponed_status">Status: Postponed</string>
+    <string name="task_details_completed_status">Status: Completed</string>
+    <string name="task_details_not_completed_status">Status: Not completed</string>
     <string name="task_details_toolbar_subtitle">Task: %1$s</string>
     <!-- Task Adapter Strings -->
     <string name="task_adapter_category_string">Category: %1$s</string>
