@@ -10,6 +10,15 @@
     <!-- Edit Task Strings -->
     <string name="edit_task_toolbar_subtitle">Edit task</string>
     <string name="edit_task_intent_extra">Task clicked</string>
+    <!-- Task Details Strings -->
+    <string name="task_details_date_format">MM/dd/yyyy</string>
+    <string name="task_details_date_added">Date Added: %1$s</string>
+    <string name="task_details_priority">Priority: %1$d</string>
+    <string name="task_details_category">Category: %1$s</string>
+    <string name="task_details_postponed_status">Status: postponed</string>
+    <string name="task_details_completed_status">Status: completed</string>
+    <string name="task_details_not_completed_status">Status: not completed</string>
+    <string name="task_details_toolbar_subtitle">Task: %1$s</string>
 
 
     <string-array name="categories">

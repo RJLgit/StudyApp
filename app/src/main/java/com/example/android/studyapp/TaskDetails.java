@@ -17,6 +17,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class TaskDetails extends AppCompatActivity {
+    //UI variables
     Toolbar toolbar;
     TextView title, date, priority, category, description, status;
     Button editButton;
@@ -34,31 +35,32 @@ public class TaskDetails extends AppCompatActivity {
         description = findViewById(R.id.descriptionTextView);
         status = findViewById(R.id.currentStatusTextView);
         editButton = findViewById(R.id.editTaskButton);
-
+        //Sets up the toolbar
         setSupportActionBar(toolbar);
         toolbar.setTitle(getString(R.string.app_name));
-
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
+        //Gets the task object
         final Task myTask = (Task) getIntent().getSerializableExtra(getString(R.string.edit_task_intent_extra));
-
+        //Sets the title text view to the title of the task
         title.setText(myTask.getTitle());
-        String dateString = new SimpleDateFormat("MM/dd/yyyy").format(new Date(myTask.getTimeAdded()));
-        date.setText("Date Added: " + dateString);
-        priority.setText("Priority: " + myTask.getPriority());
-        category.setText("Category: " + myTask.getCategory());
+        //Gets the date in the correct format
+        String dateString = new SimpleDateFormat(getString(R.string.task_details_date_format)).format(new Date(myTask.getTimeAdded()));
+        //This sets all the UI elements to hold the information about the task
+        date.setText(getString(R.string.task_details_date_added, dateString));
+        priority.setText(getString(R.string.task_details_priority, myTask.getPriority()));
+        category.setText(getString(R.string.task_details_category, myTask.getCategory()));
         description.setText(myTask.getDescription());
         if (myTask.isPostponed()) {
-            status.setText("Status: postponed");
+            status.setText(R.string.task_details_postponed_status);
         } else {
             if (myTask.isCompleted()) {
-                status.setText("Status: completed");
+                status.setText(R.string.task_details_completed_status);
             } else {
-                status.setText("Status: not completed");
+                status.setText(R.string.task_details_not_completed_status);
             }
         }
-        toolbar.setSubtitle("Task: " + myTask.getTitle());
-
+        toolbar.setSubtitle(getString(R.string.task_details_toolbar_subtitle, myTask.getTitle()));
+        //Loads the edit task activity when edit task button pressed, passed the task object to this activity as an extra
         editButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -70,7 +72,7 @@ public class TaskDetails extends AppCompatActivity {
         });
 
     }
-
+    //Implements when the back button on the toolbar pressed
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
@@ -81,7 +83,7 @@ public class TaskDetails extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
-
+    //Overrides onbackpressed to load mainactivity when pressed
     @Override
     public void onBackPressed() {
         Intent intent = new Intent(this, MainActivity.class);
