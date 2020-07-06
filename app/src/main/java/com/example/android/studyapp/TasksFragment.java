@@ -43,7 +43,7 @@ public class TasksFragment extends Fragment implements SharedPreferences.OnShare
         adapter = new TaskAdapter(getActivity(), (TaskAdapter.OnActionButtonPressed) getActivity(), (TaskAdapter.OnTaskClicked) getActivity());
         recyclerView.setAdapter(adapter);
         //Sends array of options to populate the drop down menu in each item
-        adapter.setSpinnerArray(R.array.postponed_actions);
+        adapter.setSpinnerArray(R.array.task_actions);
         //Gets the postponed tasks and populates the adapter with these tasks, sends the sort and filter settings obtained from the shared preferences instance
         TaskViewModel viewModel = new ViewModelProvider(requireActivity()).get(TaskViewModel.class);
         viewModel.getUncompletedTasks().observe(getViewLifecycleOwner(), new Observer<List<Task>>() {
