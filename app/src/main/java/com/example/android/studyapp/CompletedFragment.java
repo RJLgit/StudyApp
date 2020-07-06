@@ -21,9 +21,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class CompletedFragment extends Fragment implements SharedPreferences.OnSharedPreferenceChangeListener {
+    //Recyclerview variables
     RecyclerView recyclerView;
-    SharedPreferences sharedPreferences;
     TaskAdapter adapter;
+    //Shared preferences to hold the settings
+    SharedPreferences sharedPreferences;
+
 
     public CompletedFragment() {
         // Required empty public constructor
@@ -34,47 +37,48 @@ public class CompletedFragment extends Fragment implements SharedPreferences.OnS
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_completed, container, false);
-
+        //Sets up the RV
         recyclerView = v.findViewById(R.id.completed_rv);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
-
+        //Sets up the adapter, sending the activity as the context and on click listeners
         adapter = new TaskAdapter(getActivity(), (TaskAdapter.OnActionButtonPressed) getActivity(), (TaskAdapter.OnTaskClicked) getActivity());
         recyclerView.setAdapter(adapter);
+        //Sends array of options to populate the drop down menu in each item
         adapter.setSpinnerArray(R.array.completed_actions);
-
+        //Gets the completed tasks and populates the adapter with these tasks, sends the sort and filter settings obtained from the shared preferences instance
         TaskViewModel viewModel = new ViewModelProvider(requireActivity()).get(TaskViewModel.class);
         viewModel.getCompletedTasks().observe(getViewLifecycleOwner(), new Observer<List<Task>>() {
             @Override
             public void onChanged(List<Task> tasks) {
                 adapter.setMyTasks(tasks);
-                adapter.filterData(sharedPreferences.getStringSet("settings_key_category", null));
-                adapter.sortData(sharedPreferences.getString("settings_key_sort", "Date added - Most recent to least recent"));
+                adapter.filterData(sharedPreferences.getStringSet(getString(R.string.settings_key_categories), null));
+                adapter.sortData(sharedPreferences.getString(getString(R.string.settings_key_sort), getString(R.string.default_setting_sort)));
             }
         });
 
         return v;
     }
-
+    //When the fragment is attached the shared preference instance is created and the listener is registered
     @Override
     public void onAttach(@NonNull Context context) {
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         sharedPreferences.registerOnSharedPreferenceChangeListener(this);
         super.onAttach(context);
     }
-
+    //Need to ungregister the sharedpreference change listener when detached
     @Override
     public void onDetach() {
         sharedPreferences.unregisterOnSharedPreferenceChangeListener(this);
         super.onDetach();
     }
-
+    //Method triggered when shared preference changed, sends the new setting to the adapter when that happens to update the RV
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s) {
         if (s.equals("settings_key_sort")) {
-            adapter.sortData(sharedPreferences.getString("settings_key_sort", "Date added - Most recent to least recent"));
+            adapter.sortData(sharedPreferences.getString(getString(R.string.settings_key_sort), getString(R.string.default_setting_sort)));
         } else if (s.equals("settings_key_category")) {
-            adapter.filterData(sharedPreferences.getStringSet("settings_key_category", null));
+            adapter.filterData(sharedPreferences.getStringSet(getString(R.string.settings_key_categories), null));
         }
     }
 }

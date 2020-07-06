@@ -3,6 +3,10 @@
     <!-- Add Task Strings -->
     <string name="add_task_toolbar_subtitle">Add a task</string>
     <string name="add_task_toast_not_valid">Please enter text for both the title and description</string>
+    <!-- Shared Preference strings for keys and defaults -->
+    <string name="settings_key_categories">settings_key_category</string>
+    <string name="settings_key_sort">settings_key_sort</string>
+    <string name="default_setting_sort">Date added - Most recent to least recent</string>
 
     <string-array name="categories">
         <item>Work</item>
