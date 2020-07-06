@@ -7,6 +7,7 @@
     <string name="settings_key_categories">settings_key_category</string>
     <string name="settings_key_sort">settings_key_sort</string>
     <string name="default_setting_sort">Date added - Most recent to least recent</string>
+    <string name="sort_priority">Priority - high to low</string>
     <!-- Edit Task Strings -->
     <string name="edit_task_toolbar_subtitle">Edit task</string>
     <string name="edit_task_intent_extra">Task clicked</string>
@@ -19,6 +20,10 @@
     <string name="task_details_completed_status">Status: completed</string>
     <string name="task_details_not_completed_status">Status: not completed</string>
     <string name="task_details_toolbar_subtitle">Task: %1$s</string>
+    <!-- Task Adapter Strings -->
+    <string name="task_adapter_category_string">Category: %1$s</string>
+    <string name="task_adapter_priority">Priority: %1$d</string>
+
 
 
     <string-array name="categories">
