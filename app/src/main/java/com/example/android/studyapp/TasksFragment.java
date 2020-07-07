@@ -1,24 +1,15 @@
 package com.example.android.studyapp;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import com.example.android.studyapp.data.Task;
 import com.example.android.studyapp.data.TaskViewModel;
-
 import java.util.List;
 
 public class TasksFragment extends GeneralFragment {
