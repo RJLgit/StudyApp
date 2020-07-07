@@ -3,6 +3,7 @@ package com.example.android.studyapp;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
@@ -195,7 +196,8 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     //When back is pressed from main activity then tasks fragment is loaded unless it is already showing and then super is called
     @Override
     public void onBackPressed() {
-        if (findViewById(R.id.tasks_rv) == null) {
+        Fragment currentFragment = getSupportFragmentManager().findFragmentById(R.id.fragment_container);
+        if (!(currentFragment instanceof TasksFragment)) {
             bottomNavigationView.setSelectedItemId(bottomNavigationView.getMenu().getItem(0).getItemId());
         } else {
             super.onBackPressed();
