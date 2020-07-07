@@ -82,7 +82,7 @@ public class EditTask extends AppCompatActivity {
                     myTask.setCategory(category);
                     //Update task is called on the view model to change the task object in the database
                     viewModel.updateTask(myTask);
-                    finishAffinity();
+                    finish();
                 } else {
                     //A toast message is shown if the entry isn't valid
                     Toast.makeText(EditTask.this, R.string.add_task_toast_not_valid, Toast.LENGTH_LONG).show();
