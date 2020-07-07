@@ -76,7 +76,8 @@
         android:maxLines="1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/titleLabelTextView"
-        app:layout_constraintTop_toTopOf="@+id/titleLabelTextView" />
+        app:layout_constraintTop_toTopOf="@+id/titleLabelTextView"
+        android:hint="@string/add_task_title_hint"/>
 
     <EditText
         android:id="@+id/edit_text_description"
@@ -87,7 +88,8 @@
         android:inputType="textMultiLine"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/descriptionLabelTextView"
-        app:layout_constraintTop_toTopOf="@+id/descriptionLabelTextView" />
+        app:layout_constraintTop_toTopOf="@+id/descriptionLabelTextView"
+        android:hint="@string/add_task_description_hint"/>
 
     <NumberPicker
         android:id="@+id/priorityNumberPicker"

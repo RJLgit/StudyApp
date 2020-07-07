@@ -55,6 +55,8 @@
     <string name="add_task_floating_button_content_descrip">Add task</string>
     <string name="edit_task_button">Edit this task</string>
     <string name="take_action_button">Take Action</string>
+    <string name="add_task_title_hint">Must enter a title</string>
+    <string name="add_task_description_hint">Must enter a description</string>
 
     <string-array name="categories">
         <item>Work</item>
