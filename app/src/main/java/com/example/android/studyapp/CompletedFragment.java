@@ -20,12 +20,9 @@ import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class CompletedFragment extends Fragment implements SharedPreferences.OnSharedPreferenceChangeListener {
+public class CompletedFragment extends GeneralFragment {
     //Recyclerview variables
     RecyclerView recyclerView;
-    TaskAdapter adapter;
-    //Shared preferences to hold the settings
-    SharedPreferences sharedPreferences;
 
 
     public CompletedFragment() {
@@ -58,27 +55,5 @@ public class CompletedFragment extends Fragment implements SharedPreferences.OnS
         });
 
         return v;
-    }
-    //When the fragment is attached the shared preference instance is created and the listener is registered
-    @Override
-    public void onAttach(@NonNull Context context) {
-        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
-        sharedPreferences.registerOnSharedPreferenceChangeListener(this);
-        super.onAttach(context);
-    }
-    //Need to ungregister the sharedpreference change listener when detached
-    @Override
-    public void onDetach() {
-        sharedPreferences.unregisterOnSharedPreferenceChangeListener(this);
-        super.onDetach();
-    }
-    //Method triggered when shared preference changed, sends the new setting to the adapter when that happens to update the RV
-    @Override
-    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s) {
-        if (s.equals("settings_key_sort")) {
-            adapter.sortData(sharedPreferences.getString(getString(R.string.settings_key_sort), getString(R.string.default_setting_sort)));
-        } else if (s.equals("settings_key_category")) {
-            adapter.filterData(sharedPreferences.getStringSet(getString(R.string.settings_key_categories), null));
-        }
     }
 }

@@ -200,7 +200,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         if (!(currentFragment instanceof TasksFragment)) {
             bottomNavigationView.setSelectedItemId(bottomNavigationView.getMenu().getItem(0).getItemId());
         } else {
-            super.onBackPressed();
+            finishAffinity();
         }
     }
 }
